@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ComposeViewController.h"
 
-@interface MainFeedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MainFeedViewController : UIViewController <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @end

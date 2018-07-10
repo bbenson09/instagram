@@ -8,7 +8,6 @@
 
 #import "ComposeViewController.h"
 #import <Parse/Parse.h>
-#import "Post.h"
 
 @interface ComposeViewController ()
 
@@ -54,10 +53,12 @@
     
     [Post postUserImage:self.image withCaption:self.captionField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         
+        [self.delegate didPost];
         NSLog(@"Successfully posted");
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
