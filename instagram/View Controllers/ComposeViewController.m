@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imView;
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
 @property (strong, nonatomic) UIImage *image;
+@property (nonatomic, assign) BOOL isPhone;
 
 
 @end
@@ -29,7 +30,8 @@
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    self.isPhone = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    if (self.isPhone) {
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
     else {
@@ -73,9 +75,16 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
-    self.image = originalImage;
     
-    [self.imView setImage:originalImage];
+    if (self.isPhone) {
+        self.image = editedImage;
+        [self.imView setImage:editedImage];
+    }
+    else {
+        self.image = originalImage;
+        [self.imView setImage:originalImage];
+    }
+    
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
