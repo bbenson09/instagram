@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (strong, nonatomic) NSArray *posts;
+@property UIRefreshControl *refreshControl;
 
 @end
 
@@ -24,11 +25,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.feedTableView insertSubview:self.refreshControl atIndex:0];
+    
     // Set up for UITableView
     self.feedTableView.delegate = self;
     self.feedTableView.dataSource = self;
-    
-    
     
     [self queryPosts];
 
@@ -52,18 +55,24 @@
         if (posts) {
             self.posts = posts;
             [self.feedTableView reloadData];
+            [self.refreshControl endRefreshing];
         }
         else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    
-    
 }
 
 - (void)didPost {
     
     [self queryPosts];
+}
+
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    
+    [self queryPosts];
+    
+    
 }
 
 - (IBAction)logoutTapped:(id)sender {
