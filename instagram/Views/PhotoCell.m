@@ -28,7 +28,7 @@
     self.descriptionLabel.text = self.post.caption;
     self.usernameLabel.text = self.post.author.username;
     
-    PFFile *imageFile = post[@"image"];
+    PFFile *imageFile = post.image;
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!data) {

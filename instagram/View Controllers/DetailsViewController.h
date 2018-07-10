@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 
 @property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) NSString *timeAgo;
 
 @end

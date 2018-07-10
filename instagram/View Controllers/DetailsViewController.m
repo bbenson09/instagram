@@ -7,6 +7,7 @@
 //
 
 #import "DetailsViewController.h"
+#import "DateTools.h"
 
 @interface DetailsViewController ()
 
@@ -31,6 +32,13 @@
         // Do something with the image
         self.photo.image = [UIImage imageWithData:data];
     }];
+    
+    NSDate *createdAt = self.post.createdAt;
+    
+    self.timeAgo = [createdAt shortTimeAgoSinceNow];
+    
+    self.timestampLabel.text = self.timeAgo;
+    
 }
 
 - (void)didReceiveMemoryWarning {
