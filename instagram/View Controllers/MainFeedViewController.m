@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "Post.h"
 #import "PhotoCell.h"
+#import "DetailsViewController.h"
 
 @interface MainFeedViewController ()
 
@@ -108,11 +109,21 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController *)navigationController.topViewController;
-    composeController.delegate = self;
-    
-    
+    if ([[segue identifier] isEqualToString:@"showCompose"]) {
+        
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController *)navigationController.topViewController;
+        composeController.delegate = self;
+    }
+    else if ([[segue identifier] isEqualToString:@"showDetails"]) {
+        
+        NSIndexPath *indexPath = [self.feedTableView indexPathForSelectedRow];
+        
+        UINavigationController *navigationController = [segue destinationViewController];
+        DetailsViewController *detailsController = (DetailsViewController *)navigationController.topViewController;
+        
+        detailsController.post = self.posts[indexPath.row];
+    }
 }
  
 
