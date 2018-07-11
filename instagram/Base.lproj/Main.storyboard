@@ -320,26 +320,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3wh-FL-blU">
-                                    <size key="itemSize" width="124" height="114"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
+                                <collectionViewLayout key="collectionViewLayout" id="hSD-D4-BN5" customClass="CustomCollectionView"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionCell" id="bGx-pI-wMd" customClass="CollectionCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="124" height="114"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="124" height="114"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrJ-Sp-DVT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="114"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hrJ-Sp-DVT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="hrJ-Sp-DVT" firstAttribute="leading" secondItem="bGx-pI-wMd" secondAttribute="leading" id="0o9-Qf-FEf"/>
+                                            <constraint firstAttribute="trailing" secondItem="hrJ-Sp-DVT" secondAttribute="trailing" id="2zq-Cr-gvP"/>
+                                            <constraint firstAttribute="bottom" secondItem="hrJ-Sp-DVT" secondAttribute="bottom" id="L9b-7f-7Tw"/>
+                                            <constraint firstItem="hrJ-Sp-DVT" firstAttribute="top" secondItem="bGx-pI-wMd" secondAttribute="top" id="UVW-FF-v3f"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="photo" destination="hrJ-Sp-DVT" id="SOl-7H-MZg"/>
                                         </connections>

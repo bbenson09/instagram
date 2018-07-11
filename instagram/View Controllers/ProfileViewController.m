@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "CollectionCell.h"
 #import "Post.h"
+#import "CustomCollectionView.h"
 
 @interface ProfileViewController ()
 
@@ -29,6 +30,8 @@
     
     self.profileCollection.dataSource = self;
     self.profileCollection.delegate = self;
+    
+    self.profileCollection.collectionViewLayout = [[CustomCollectionView alloc] init];
     
     [self.usernameLabel setHidden:YES];
     [self getCurrentUser];
