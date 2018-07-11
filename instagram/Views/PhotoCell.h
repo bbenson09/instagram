@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
+@property (weak, nonatomic) IBOutlet UILabel *topUsernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *likesLabel;
 
 @property (strong, nonatomic) Post *post;
 

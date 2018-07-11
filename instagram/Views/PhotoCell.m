@@ -27,6 +27,8 @@
     
     self.descriptionLabel.text = self.post.caption;
     self.usernameLabel.text = self.post.author.username;
+    self.topUsernameLabel.text = self.post.author.username;
+    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [self.post.likeCount stringValue]];
     
     PFFile *imageFile = post.image;
     
