@@ -31,7 +31,6 @@
     self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [self.post.likeCount stringValue]];
     
     PFFile *imageFile = post.image;
-    
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!data) {
             return NSLog(@"%@", error);
@@ -41,9 +40,15 @@
         self.photo.image = [UIImage imageWithData:data];
     }];
     
-    
-    
-    
+    PFFile *profilePicFile = post.author[@"profilePic"];
+    [profilePicFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!data) {
+            return NSLog(@"%@", error);
+        }
+        
+        // Do something with the image
+        self.profilePic.image = [UIImage imageWithData:data];
+    }];
 }
 
 @end

@@ -36,8 +36,7 @@
     [self.usernameLabel setHidden:YES];
     [self getCurrentUser];
     [self.profileCollection reloadData];
-
-
+    
 }
 
 - (void)queryUserPosts {

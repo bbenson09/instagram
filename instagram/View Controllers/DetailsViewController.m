@@ -34,11 +34,16 @@
     }];
     
     NSDate *createdAt = self.post.createdAt;
-    
     self.timeAgo = [createdAt shortTimeAgoSinceNow];
-    
     self.timestampLabel.text = self.timeAgo;
     
+    PFFile *profilePicFile = self.post.author[@"profilePic"];
+    [profilePicFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!data) {
+            return NSLog(@"%@", error);
+        }
+        self.profilePic.image = [UIImage imageWithData:data];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
