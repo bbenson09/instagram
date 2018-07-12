@@ -8,6 +8,7 @@
 
 #import "ComposeViewController.h"
 #import <Parse/Parse.h>
+#import "ProgressHUD.h"
 
 @interface ComposeViewController ()
 
@@ -53,10 +54,12 @@
 
 - (IBAction)shareTapped:(id)sender {
     
+    [ProgressHUD show:@"Posting"];
     [Post postUserImage:self.image withCaption:self.captionField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         
         [self.delegate didPost];
         NSLog(@"Successfully posted");
+        [ProgressHUD dismiss];
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
     

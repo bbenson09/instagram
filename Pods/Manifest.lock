@@ -8,11 +8,13 @@ PODS:
   - ParseUI (1.2.0):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
+  - ProgressHUD (2.60)
 
 DEPENDENCIES:
   - DateTools
   - Parse
   - ParseUI
+  - ProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -20,13 +22,15 @@ SPEC REPOS:
     - DateTools
     - Parse
     - ParseUI
+    - ProgressHUD
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
   ParseUI: 2b37a0bc692a3e7666cf0c37b5521dfddd74a1af
+  ProgressHUD: 4e4efbaf4f5de8bd32e0c4c3b6644a90ea1a8c3e
 
-PODFILE CHECKSUM: 1d2cbee6c008d979f3070534c3e670045a319e7d
+PODFILE CHECKSUM: 35b20dc9378d881254681297460963eb393f0937
 
 COCOAPODS: 1.5.3
