@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import "PFUser+Extension.h"
 
 @interface LoginViewController ()
 
@@ -75,7 +76,7 @@
     // set user properties
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
-    
+
     // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
@@ -85,6 +86,13 @@
             
             [self performSegueWithIdentifier:@"segueFromLogin" sender:nil];
         }
+    }];
+    newUser.numberFollowing = @0;
+    newUser.numberFollowers = @0;
+    newUser.numberPosts = @0;
+    newUser.profilePic = nil;
+    [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        NSLog(@"Updated following, followers, post numbers");
     }];
 }
 

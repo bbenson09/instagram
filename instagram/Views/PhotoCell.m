@@ -51,4 +51,10 @@
     }];
 }
 
+- (IBAction)photoButtonTapped:(id)sender {
+    
+    NSNumber *newLikeCount = [NSNumber numberWithInt:[self.post.likeCount intValue] + 1];
+    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [newLikeCount stringValue]];
+}
+
 @end

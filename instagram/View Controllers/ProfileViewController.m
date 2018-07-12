@@ -11,14 +11,19 @@
 #import "CollectionCell.h"
 #import "Post.h"
 #import "CustomCollectionView.h"
+#import "PFUser+Extension.h"
 
 @interface ProfileViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *profileCollection;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
+
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSArray *posts;
+@property (weak, nonatomic) IBOutlet UILabel *numPosts;
+@property (weak, nonatomic) IBOutlet UILabel *numFollowers;
+@property (weak, nonatomic) IBOutlet UILabel *numFollowing;
 
 @end
 
@@ -69,10 +74,25 @@
             self.user = [objects firstObject];
             self.usernameLabel.text = self.user.username;
             [self.usernameLabel setHidden:NO];
+            self.numPosts.text = [self.user.numberPosts stringValue];
+            self.numFollowers.text = [self.user.numberFollowers stringValue];
+            self.numFollowing.text = [self.user.numberFollowing stringValue];
+            
+            PFFile *profilePicFile = self.user[@"profilePic"];            [profilePicFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                if (!data) {
+                    return NSLog(@"%@", error);
+                }
+                
+                // Do something with the image
+                self.profilePic.image = [UIImage imageWithData:data];
+            }];
+            
             [self queryUserPosts];
         }
     }];
 }
+
+
 
 
 - (void)didReceiveMemoryWarning {

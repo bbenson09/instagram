@@ -81,9 +81,10 @@
     
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
+        [self dismissViewControllerAnimated:true completion:nil];
     }];
     
-    [self dismissViewControllerAnimated:true completion:nil];
+    
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

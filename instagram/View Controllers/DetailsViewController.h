@@ -16,8 +16,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
+@property (weak, nonatomic) IBOutlet UILabel *likesLabel;
 
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) NSString *timeAgo;
+
+
 
 @end

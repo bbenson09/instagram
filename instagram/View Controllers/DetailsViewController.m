@@ -11,6 +11,8 @@
 
 @interface DetailsViewController ()
 
+
+
 @end
 
 @implementation DetailsViewController
@@ -21,6 +23,7 @@
     
     self.usernameLabel.text = self.post.author.username;
     self.descriptionLabel.text = self.post.caption;
+    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [self.post.likeCount stringValue]];
     
     PFFile *imageFile = self.post[@"image"];
     
