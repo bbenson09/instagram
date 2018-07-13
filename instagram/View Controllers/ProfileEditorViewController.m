@@ -8,13 +8,17 @@
 
 #import "ProfileEditorViewController.h"
 #import "PFUser+Extension.h"
+#import <Parse/Parse.h>
 
 @interface ProfileEditorViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 @property (nonatomic, assign) BOOL isPhone;
+@property (weak, nonatomic) IBOutlet UITextField *captionEditor;
+@property (assign, nonatomic) BOOL isEdited;
 @property (strong, nonatomic) PFUser *currentUser;
+
 
 @end
 
@@ -24,10 +28,37 @@
     [super viewDidLoad];
     
     self.currentUser = [PFUser currentUser];
+    self.isEdited = NO;
     // Do any additional setup after loading the view.
+    
+    PFFile *profilePicFile = self.currentUser.profilePic;
+    [profilePicFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        
+        if (!data) {
+            return NSLog(@"%@", error);
+        }
+        
+        // Do something with the image
+        self.profilePic.image = [UIImage imageWithData:data];
+    }];
+}
+
+- (IBAction)captionEdited:(id)sender {
+    
+    self.isEdited = YES;
+    
 }
 
 - (IBAction)doneClicked:(id)sender {
+    
+    if (self.isEdited) {
+        
+        [PFUser postCaption:self.captionEditor.text :self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            
+            NSLog(@"New caption posted");
+        }];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)imageTapped:(id)sender {
@@ -47,8 +78,6 @@
     }
     
     [self presentViewController:self.imagePickerVC animated:YES completion:nil];
-    
-    
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -58,16 +87,33 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     if (self.isPhone) {
-        [PFUser postUserImage:editedImage :self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [PFUser postProfileImage:editedImage :self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             NSLog(@"New profile pic posted");
         }];
+        
     }
     else {
-        [PFUser postUserImage:originalImage :self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [PFUser postProfileImage:originalImage :self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             NSLog(@"New profile pic posted");
         }];
     }
+    [self.currentUser saveInBackground];
+    PFFile *profilePicFile = self.currentUser.profilePic;
+    [profilePicFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!data) {
+            return NSLog(@"%@", error);
+        }
+        
+        self.profilePic.image = [UIImage imageWithData:data];
+    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)backButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

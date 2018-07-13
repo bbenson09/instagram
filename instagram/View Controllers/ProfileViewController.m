@@ -29,6 +29,8 @@
     self.profileCollection.dataSource = self;
     self.profileCollection.delegate = self;
     
+    
+    
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.profileCollection.collectionViewLayout;
     
     CGFloat photosPerLine = 3;
@@ -74,6 +76,11 @@
     }];
 }
 
+- (void)updatedProfileInfo {
+    
+    [self.profileCollection refreshControl];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -116,5 +123,9 @@
     }
     return header;
 }
+
+
+
+
 
 @end

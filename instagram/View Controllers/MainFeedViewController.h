@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ComposeViewController.h"
+#import "PFUser+Extension.h"
 
 @interface MainFeedViewController : UIViewController <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 

@@ -7,6 +7,7 @@
 //
 
 #import "PhotoCell.h"
+#import "MainFeedViewController.h"
 
 @implementation PhotoCell
 
@@ -45,8 +46,6 @@
         if (!data) {
             return NSLog(@"%@", error);
         }
-        
-        // Do something with the image
         self.profilePic.image = [UIImage imageWithData:data];
     }];
 }

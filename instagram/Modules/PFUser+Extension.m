@@ -51,11 +51,11 @@
     self[@"userCaption"] = userCaption;
 }
 
-+ (void) postUserImage: ( UIImage * _Nullable )image : ( PFUser *)user withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) postProfileImage: ( UIImage * _Nullable )image : ( PFUser *)user withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     user.profilePic = [self getPFFileFromImage:image];
     
-    [user.profilePic saveInBackgroundWithBlock: completion];
+    [user.profilePic saveInBackground];
 }
 
 + (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image {
@@ -72,6 +72,12 @@
     }
     
     return [PFFile fileWithName:@"image.png" data:imageData];
+}
+
++ (void) postCaption: ( NSString * _Nullable)caption : ( PFUser * _Nullable)user withCompletion: (PFBooleanResultBlock _Nullable)completion {
+    
+    user.userCaption = caption;
+    [user saveInBackground];
 }
 
 @end

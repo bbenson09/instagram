@@ -73,18 +73,14 @@
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
     
     [self queryPosts];
-    
-    
 }
 
 - (IBAction)logoutTapped:(id)sender {
     
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // PFUser.current() will now be nil
-        [self dismissViewControllerAnimated:true completion:nil];
+        
+        // MANUALLY ADD SEGUE TO LOGIN PAGE
     }];
-    
-    
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

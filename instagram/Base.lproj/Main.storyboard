@@ -589,14 +589,13 @@
         <scene sceneID="enC-QN-1he">
             <objects>
                 <viewController id="YGc-Lj-Szp" customClass="ProfileEditorViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cgN-ua-a1c">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="cgN-ua-a1c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oHz-XA-FX9">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oHz-XA-FX9">
                                 <rect key="frame" x="139" y="90" width="97" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="fgM-CL-Hk2" appends="YES" id="d65-Sb-tZg"/>
@@ -609,13 +608,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="captionEdited:" destination="YGc-Lj-Szp" eventType="editingDidEnd" id="Wje-ao-Z1F"/>
+                                    <action selector="captionEdited:" destination="YGc-Lj-Szp" eventType="editingDidEnd" id="rBR-cN-SmL"/>
                                 </connections>
                             </textField>
                         </subviews>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="7HH-yU-nID"/>
                     </view>
                     <navigationItem key="navigationItem" id="pjU-08-3gl">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="iOx-c7-o6U">
+                            <connections>
+                                <action selector="backButtonTapped:" destination="YGc-Lj-Szp" id="LbB-gj-g5f"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="jAK-bc-uSs">
                             <connections>
                                 <action selector="doneClicked:" destination="YGc-Lj-Szp" id="SyE-Ht-3vU"/>
@@ -623,6 +628,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="captionEditor" destination="LjH-qF-yFO" id="Wll-KK-f5N"/>
                         <outlet property="profilePic" destination="oHz-XA-FX9" id="Dfe-cF-q9T"/>
                     </connections>
                 </viewController>

@@ -11,12 +11,14 @@
 
 @interface PFUser (Extension)
 
-@property (nonatomic, strong) NSNumber *numberFollowers;
-@property (nonatomic, strong) NSNumber *numberFollowing;
-@property (nonatomic, strong) NSNumber *numberPosts;
-@property (nonatomic, strong) PFFile *profilePic;
-@property (nonatomic, strong) NSString *userCaption;
+@property (nonatomic, strong) NSNumber * _Nullable numberFollowers;
+@property (nonatomic, strong) NSNumber * _Nullable numberFollowing;
+@property (nonatomic, strong) NSNumber * _Nullable numberPosts;
+@property (nonatomic, strong) PFFile * _Nullable profilePic;
+@property (nonatomic, strong) NSString * _Nullable userCaption;
 
-+ (void) postUserImage: ( UIImage * _Nullable )image : ( PFUser *)user withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) postProfileImage: ( UIImage * _Nullable )image : ( PFUser * _Nullable)user withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+
++ (void) postCaption: ( NSString * _Nullable)caption : ( PFUser * _Nullable)user withCompletion: (PFBooleanResultBlock _Nullable)completion;
 
 @end

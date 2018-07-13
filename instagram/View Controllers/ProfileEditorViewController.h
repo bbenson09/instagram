@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ProfileEditorDelegate
+
+- (void)updatedProfileInfo;
+
+@end
+
 @interface ProfileEditorViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (nonatomic, weak) id<ProfileEditorDelegate> delegate;
 
 @end
