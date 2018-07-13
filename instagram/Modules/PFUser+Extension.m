@@ -42,4 +42,36 @@
 - (void)setProfilePic:(PFFile *)profilePic {
     self[@"profilePic"] = profilePic;
 }
+
+- (NSString *)userCaption {
+    return self[@"userCaption"];
+}
+
+- (void)setUserCaption:(NSString *)userCaption {
+    self[@"userCaption"] = userCaption;
+}
+
++ (void) postUserImage: ( UIImage * _Nullable )image : ( PFUser *)user withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+    
+    user.profilePic = [self getPFFileFromImage:image];
+    
+    [user.profilePic saveInBackgroundWithBlock: completion];
+}
+
++ (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image {
+    
+    // check if image is not nil
+    if (!image) {
+        return nil;
+    }
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    // get image data and check if that is not nil
+    if (!imageData) {
+        return nil;
+    }
+    
+    return [PFFile fileWithName:@"image.png" data:imageData];
+}
+
 @end

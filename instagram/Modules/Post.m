@@ -50,7 +50,6 @@
     
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
-
 @end
 
 

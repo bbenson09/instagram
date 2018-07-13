@@ -18,7 +18,8 @@
 		01819A0820F40FB000EE7E4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01819A0620F40FB000EE7E4F /* LaunchScreen.storyboard */; };
 		01819A0B20F40FB000EE7E4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01819A0A20F40FB000EE7E4F /* main.m */; };
 		01C4CEB320F7D96E008BA247 /* PFUser+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4CEB220F7D96E008BA247 /* PFUser+Extension.m */; };
-		01D478BE20F66F63006330FD /* CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D478BD20F66F63006330FD /* CustomCollectionView.m */; };
+		01C4CEB620F824E7008BA247 /* ProfileSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4CEB520F824E7008BA247 /* ProfileSectionHeader.m */; };
+		01C4CEBB20F868D8008BA247 /* ProfileEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C4CEBA20F868D8008BA247 /* ProfileEditorViewController.m */; };
 		01D6F9D820F5322500BB0589 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6F9D720F5322500BB0589 /* DetailsViewController.m */; };
 		01D6F9DB20F561D400BB0589 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6F9DA20F561D400BB0589 /* ProfileViewController.m */; };
 		01D6F9DE20F56D2900BB0589 /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6F9DD20F56D2900BB0589 /* CollectionCell.m */; };
@@ -46,8 +47,10 @@
 		01819A0A20F40FB000EE7E4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		01C4CEB120F7D96E008BA247 /* PFUser+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PFUser+Extension.h"; sourceTree = "<group>"; };
 		01C4CEB220F7D96E008BA247 /* PFUser+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Extension.m"; sourceTree = "<group>"; };
-		01D478BC20F66F63006330FD /* CustomCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCollectionView.h; sourceTree = "<group>"; };
-		01D478BD20F66F63006330FD /* CustomCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionView.m; sourceTree = "<group>"; };
+		01C4CEB420F824E7008BA247 /* ProfileSectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileSectionHeader.h; sourceTree = "<group>"; };
+		01C4CEB520F824E7008BA247 /* ProfileSectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileSectionHeader.m; sourceTree = "<group>"; };
+		01C4CEB920F868D8008BA247 /* ProfileEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileEditorViewController.h; sourceTree = "<group>"; };
+		01C4CEBA20F868D8008BA247 /* ProfileEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileEditorViewController.m; sourceTree = "<group>"; };
 		01D6F9D620F5322500BB0589 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		01D6F9D720F5322500BB0589 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		01D6F9D920F561D400BB0589 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 			children = (
 				01D6F9D920F561D400BB0589 /* ProfileViewController.h */,
 				01D6F9DA20F561D400BB0589 /* ProfileViewController.m */,
+				01C4CEB920F868D8008BA247 /* ProfileEditorViewController.h */,
+				01C4CEBA20F868D8008BA247 /* ProfileEditorViewController.m */,
 				01D6F9D620F5322500BB0589 /* DetailsViewController.h */,
 				01D6F9D720F5322500BB0589 /* DetailsViewController.m */,
 				0113F76120F428BC00CB7A21 /* ComposeViewController.h */,
@@ -95,6 +100,8 @@
 				0113F75F20F4278000CB7A21 /* PhotoCell.m */,
 				01D6F9DC20F56D2900BB0589 /* CollectionCell.h */,
 				01D6F9DD20F56D2900BB0589 /* CollectionCell.m */,
+				01C4CEB420F824E7008BA247 /* ProfileSectionHeader.h */,
+				01C4CEB520F824E7008BA247 /* ProfileSectionHeader.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,26 +140,16 @@
 			children = (
 				0113F76420F431AB00CB7A21 /* Modules */,
 				0113F75D20F4276800CB7A21 /* Views */,
+				0113F75920F41F7E00CB7A21 /* View Controllers */,
+				01819A0120F40FAF00EE7E4F /* Main.storyboard */,
+				01819A0620F40FB000EE7E4F /* LaunchScreen.storyboard */,
 				018199FB20F40FAF00EE7E4F /* AppDelegate.h */,
 				018199FC20F40FAF00EE7E4F /* AppDelegate.m */,
-				01819A0120F40FAF00EE7E4F /* Main.storyboard */,
-				0113F75920F41F7E00CB7A21 /* View Controllers */,
-				01819A0420F40FB000EE7E4F /* Assets.xcassets */,
-				01819A0620F40FB000EE7E4F /* LaunchScreen.storyboard */,
 				01819A0920F40FB000EE7E4F /* Info.plist */,
 				01819A0A20F40FB000EE7E4F /* main.m */,
-				01D6F9E020F589A900BB0589 /* Layouts */,
+				01819A0420F40FB000EE7E4F /* Assets.xcassets */,
 			);
 			path = instagram;
-			sourceTree = "<group>";
-		};
-		01D6F9E020F589A900BB0589 /* Layouts */ = {
-			isa = PBXGroup;
-			children = (
-				01D478BC20F66F63006330FD /* CustomCollectionView.h */,
-				01D478BD20F66F63006330FD /* CustomCollectionView.m */,
-			);
-			path = Layouts;
 			sourceTree = "<group>";
 		};
 		6B53C9CBFDDB6FA9644884E1 /* Pods */ = {
@@ -296,12 +293,13 @@
 				0113F75820F4199000CB7A21 /* LoginViewController.m in Sources */,
 				01D6F9DE20F56D2900BB0589 /* CollectionCell.m in Sources */,
 				01D6F9DB20F561D400BB0589 /* ProfileViewController.m in Sources */,
+				01C4CEBB20F868D8008BA247 /* ProfileEditorViewController.m in Sources */,
 				0113F76020F4278000CB7A21 /* PhotoCell.m in Sources */,
+				01C4CEB620F824E7008BA247 /* ProfileSectionHeader.m in Sources */,
 				01819A0B20F40FB000EE7E4F /* main.m in Sources */,
 				0113F76320F428BC00CB7A21 /* ComposeViewController.m in Sources */,
 				01C4CEB320F7D96E008BA247 /* PFUser+Extension.m in Sources */,
 				018199FD20F40FAF00EE7E4F /* AppDelegate.m in Sources */,
-				01D478BE20F66F63006330FD /* CustomCollectionView.m in Sources */,
 				0113F75C20F41F9C00CB7A21 /* MainFeedViewController.m in Sources */,
 				0113F76720F431BE00CB7A21 /* Post.m in Sources */,
 				01D6F9D820F5322500BB0589 /* DetailsViewController.m in Sources */,

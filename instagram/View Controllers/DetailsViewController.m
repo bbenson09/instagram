@@ -60,6 +60,14 @@
     }];
 }
 
+- (IBAction)likeButtonClicked:(id)sender {
+    
+    NSNumber *newLikeCount = [NSNumber numberWithInt:[self.post.likeCount intValue] + 1];
+    self.post.likeCount = newLikeCount;
+    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [self.post.likeCount stringValue]];
+    [self.post saveInBackground];
+}
+
 /*
 #pragma mark - Navigation
 

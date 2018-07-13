@@ -571,10 +571,12 @@
                         <viewLayoutGuide key="safeArea" id="JcX-sZ-3mn"/>
                     </view>
                     <navigationItem key="navigationItem" id="mdn-kj-x5w">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="bYp-Yf-Anf">
-                            <connections>
-                                <segue destination="3oV-BL-A1R" kind="show" id="Zsh-XH-jAT"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="dVB-q7-ksY">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KBF-Pm-LjC">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -584,56 +586,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWg-Z8-Hfo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3668" y="427.73613193403304"/>
-        </scene>
-        <!--Profile Editor View Controller-->
-        <scene sceneID="enC-QN-1he">
-            <objects>
-                <viewController id="YGc-Lj-Szp" customClass="ProfileEditorViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cgN-ua-a1c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oHz-XA-FX9">
-                                <rect key="frame" x="139" y="90" width="97" height="97"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="fgM-CL-Hk2" appends="YES" id="d65-Sb-tZg"/>
-                                </connections>
-                            </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Update your bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LjH-qF-yFO">
-                                <rect key="frame" x="25" y="218" width="334" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="captionEdited:" destination="YGc-Lj-Szp" eventType="editingDidEnd" id="Wje-ao-Z1F"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="7HH-yU-nID"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="pjU-08-3gl">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="jAK-bc-uSs">
-                            <connections>
-                                <action selector="doneClicked:" destination="YGc-Lj-Szp" id="SyE-Ht-3vU"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="profilePic" destination="oHz-XA-FX9" id="Dfe-cF-q9T"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MeP-PD-NiM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="fgM-CL-Hk2">
-                    <connections>
-                        <action selector="imageTapped:" destination="YGc-Lj-Szp" id="wAs-wC-RnY"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="5695.1999999999998" y="425.93703148425789"/>
         </scene>
         <!--Home-->
         <scene sceneID="X84-4I-r7g">
@@ -708,24 +660,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7k-Qj-guw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2735" y="428"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xLS-NO-XkC">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3oV-BL-A1R" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fxI-Xe-4sV">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="YGc-Lj-Szp" kind="relationship" relationship="rootViewController" id="oTM-eK-zKN"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5HM-Po-bbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4756" y="425.93703148425789"/>
         </scene>
     </scenes>
     <resources>

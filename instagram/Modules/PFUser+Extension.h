@@ -15,5 +15,8 @@
 @property (nonatomic, strong) NSNumber *numberFollowing;
 @property (nonatomic, strong) NSNumber *numberPosts;
 @property (nonatomic, strong) PFFile *profilePic;
+@property (nonatomic, strong) NSString *userCaption;
+
++ (void) postUserImage: ( UIImage * _Nullable )image : ( PFUser *)user withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end

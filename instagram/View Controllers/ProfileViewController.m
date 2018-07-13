@@ -10,20 +10,14 @@
 #import <Parse/Parse.h>
 #import "CollectionCell.h"
 #import "Post.h"
-#import "CustomCollectionView.h"
+#import "ProfileSectionHeader.h"
 #import "PFUser+Extension.h"
 
 @interface ProfileViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *profileCollection;
-@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
-
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSArray *posts;
-@property (weak, nonatomic) IBOutlet UILabel *numPosts;
-@property (weak, nonatomic) IBOutlet UILabel *numFollowers;
-@property (weak, nonatomic) IBOutlet UILabel *numFollowing;
 
 @end
 
@@ -31,17 +25,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     self.profileCollection.dataSource = self;
     self.profileCollection.delegate = self;
     
-    self.profileCollection.collectionViewLayout = [[CustomCollectionView alloc] init];
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.profileCollection.collectionViewLayout;
     
-    [self.usernameLabel setHidden:YES];
+    CGFloat photosPerLine = 3;
+    CGFloat itemWidth = self.profileCollection.frame.size.width / photosPerLine;
+    CGFloat itemHeight = itemWidth;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+
     [self getCurrentUser];
     [self.profileCollection reloadData];
-    
+
 }
 
 - (void)queryUserPosts {
@@ -72,28 +69,10 @@
         }
         else {
             self.user = [objects firstObject];
-            self.usernameLabel.text = self.user.username;
-            [self.usernameLabel setHidden:NO];
-            self.numPosts.text = [self.user.numberPosts stringValue];
-            self.numFollowers.text = [self.user.numberFollowers stringValue];
-            self.numFollowing.text = [self.user.numberFollowing stringValue];
-            
-            PFFile *profilePicFile = self.user[@"profilePic"];            [profilePicFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                if (!data) {
-                    return NSLog(@"%@", error);
-                }
-                
-                // Do something with the image
-                self.profilePic.image = [UIImage imageWithData:data];
-            }];
-            
             [self queryUserPosts];
         }
     }];
 }
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -112,21 +91,30 @@
  }
  */
 
+
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-     
-     CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCollectionCell" forIndexPath:indexPath];
-     
-     cell.post = self.posts[indexPath.item];
-     
-     return cell;
-     
- }
+    
+    CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCollectionCell" forIndexPath:indexPath];
+    cell.post = self.posts[indexPath.item];
+    
+    return cell;
+}
  
  - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
      
      return self.posts.count;
  }
- 
 
+- (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(nonnull NSString *)kind atIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    ProfileSectionHeader *header = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ProfileSectionHeader" forIndexPath:indexPath];
+        
+        header.user = self.user;
+    }
+    return header;
+}
 
 @end

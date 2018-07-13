@@ -1,37 +1,43 @@
 //
-//  ComposeViewController.m
+//  ProfileEditorViewController.m
 //  instagram
 //
-//  Created by Bevin Benson on 7/9/18.
+//  Created by Bevin Benson on 7/12/18.
 //  Copyright © 2018 Bevin Benson. All rights reserved.
 //
 
-#import "ComposeViewController.h"
-#import <Parse/Parse.h>
-#import "ProgressHUD.h"
+#import "ProfileEditorViewController.h"
+#import "PFUser+Extension.h"
 
-@interface ComposeViewController ()
+@interface ProfileEditorViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
-@property (weak, nonatomic) IBOutlet UIImageView *imView;
-@property (weak, nonatomic) IBOutlet UITextField *captionField;
-@property (strong, nonatomic) UIImage *image;
 @property (nonatomic, assign) BOOL isPhone;
-
+@property (strong, nonatomic) PFUser *currentUser;
 
 @end
 
-@implementation ComposeViewController
+@implementation ProfileEditorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.currentUser = [PFUser currentUser];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)doneClicked:(id)sender {
+}
+
+- (IBAction)imageTapped:(id)sender {
     
     self.imagePickerVC = [UIImagePickerController new];
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;
     
     self.isPhone = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    
     if (self.isPhone) {
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
@@ -39,58 +45,33 @@
         NSLog(@"Camera 🚫 available so we will use photo library instead");
         self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
-}
-
-- (IBAction)imageTapped:(id)sender {
     
-    NSLog(@"Image tapped");
     [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+    
+    
 }
 
-- (IBAction)cancelTapped:(id)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)shareTapped:(id)sender {
-    
-    [ProgressHUD show:@"Posting"];
-    [Post postUserImage:self.image withCaption:self.captionField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        
-        [self.delegate didPost];
-        NSLog(@"Successfully posted");
-        [ProgressHUD dismiss];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    
+    if (self.isPhone) {
+        [PFUser postUserImage:editedImage :self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            NSLog(@"New profile pic posted");
+        }];
+    }
+    else {
+        [PFUser postUserImage:originalImage :self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            NSLog(@"New profile pic posted");
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
-    // Get the image captured by the UIImagePickerController
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    
-    // Do something with the images (based on your use case)
-    
-    if (self.isPhone) {
-        self.image = editedImage;
-        [self.imView setImage:editedImage];
-    }
-    else {
-        self.image = originalImage;
-        [self.imView setImage:originalImage];
-    }
-    
-    
-    // Dismiss UIImagePickerController to go back to your original view controller
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

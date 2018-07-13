@@ -54,7 +54,9 @@
 - (IBAction)photoButtonTapped:(id)sender {
     
     NSNumber *newLikeCount = [NSNumber numberWithInt:[self.post.likeCount intValue] + 1];
-    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [newLikeCount stringValue]];
+    self.post.likeCount = newLikeCount;
+    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [self.post.likeCount stringValue]];
+    [self.post saveInBackground];
 }
 
 @end
