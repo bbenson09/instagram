@@ -24,13 +24,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.feedTableView insertSubview:self.refreshControl atIndex:0];
-    
-    // Set up for UITableView
+
     self.feedTableView.delegate = self;
     self.feedTableView.dataSource = self;
     
@@ -40,19 +38,16 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)queryPosts {
     
-    // construct PFQuery
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
     
     postQuery.limit = 20;
     
-    // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
             self.posts = posts;
@@ -63,6 +58,7 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    
 }
 
 - (void)didPost {
@@ -100,13 +96,7 @@
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     
     if ([[segue identifier] isEqualToString:@"showCompose"]) {
         
@@ -124,7 +114,5 @@
         detailsController.post = self.posts[indexPath.row];
     }
 }
- 
-
 
 @end

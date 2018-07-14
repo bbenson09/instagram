@@ -13,13 +13,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 -(void)setPost:(Post *)post {
@@ -40,8 +37,6 @@
         if (!data) {
             return NSLog(@"%@", error);
         }
-        
-        // Do something with the image
         self.photo.image = [UIImage imageWithData:data];
     }];
     
@@ -70,8 +65,6 @@
         [self.likesButton setSelected:NO];
         [self.post.userLikes addObject:[PFUser currentUser]];
         [self.post saveInBackground];
-        
-        
     }
     else {
         
@@ -81,9 +74,7 @@
         [self.likesButton setSelected:YES];
         [self.post.userLikes removeObject:[PFUser currentUser]];
         [self.post saveInBackground];
-    }
-    
-    
+    } 
 }
 
 @end

@@ -20,8 +20,6 @@
         if (!data) {
             return NSLog(@"%@", error);
         }
-        
-        // Do something with the image
         self.photo.image = [UIImage imageWithData:data];
     }];
 
