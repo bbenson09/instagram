@@ -31,6 +31,10 @@
     self.topUsernameLabel.text = self.post.author.username;
     self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [self.post.likeCount stringValue]];
     
+    if ([self.post.userLikes containsObject:[PFUser currentUser]]) {
+        [self.likesButton setSelected:YES];
+    }
+    
     PFFile *imageFile = post.image;
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!data) {
@@ -46,16 +50,40 @@
         if (!data) {
             return NSLog(@"%@", error);
         }
+        CALayer *imageLayer = self.profilePic.layer;
+        [imageLayer setCornerRadius:5];
+        [imageLayer setBorderWidth:1];
+        [imageLayer setMasksToBounds:YES];
+        [self.profilePic.layer setCornerRadius:self.profilePic.frame.size.width/2];
+        [self.profilePic.layer setMasksToBounds:YES];
         self.profilePic.image = [UIImage imageWithData:data];
     }];
 }
 
-- (IBAction)photoButtonTapped:(id)sender {
+- (IBAction)likeButtonTapped:(id)sender {
     
-    NSNumber *newLikeCount = [NSNumber numberWithInt:[self.post.likeCount intValue] + 1];
-    self.post.likeCount = newLikeCount;
-    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [self.post.likeCount stringValue]];
-    [self.post saveInBackground];
+    if ([self.post.userLikes containsObject:[PFUser currentUser]]) {
+        
+        NSNumber *newLikeCount = [NSNumber numberWithInt:[self.post.likeCount intValue] - 1];
+        self.post.likeCount = newLikeCount;
+        self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [self.post.likeCount stringValue]];
+        [self.likesButton setSelected:NO];
+        [self.post.userLikes addObject:[PFUser currentUser]];
+        [self.post saveInBackground];
+        
+        
+    }
+    else {
+        
+        NSNumber *newLikeCount = [NSNumber numberWithInt:[self.post.likeCount intValue] + 1];
+        self.post.likeCount = newLikeCount;
+        self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", [self.post.likeCount stringValue]];
+        [self.likesButton setSelected:YES];
+        [self.post.userLikes removeObject:[PFUser currentUser]];
+        [self.post saveInBackground];
+    }
+    
+    
 }
 
 @end

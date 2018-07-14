@@ -23,14 +23,12 @@
 
 @implementation ProfileViewController
 
-- (void)viewDidLoad {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewDidLoad];
     
     self.profileCollection.dataSource = self;
     self.profileCollection.delegate = self;
-    
-    
-    
+
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.profileCollection.collectionViewLayout;
     
     CGFloat photosPerLine = 3;
@@ -74,11 +72,6 @@
             [self queryUserPosts];
         }
     }];
-}
-
-- (void)updatedProfileInfo {
-    
-    [self.profileCollection refreshControl];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="insta_background-1" translatesAutoresizingMaskIntoConstraints="NO" id="q8F-Ze-JxR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instagrambackground" translatesAutoresizingMaskIntoConstraints="NO" id="q8F-Ze-JxR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -36,7 +36,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zst-aB-r5t">
                                 <rect key="frame" x="121" y="338" width="38" height="31"/>
@@ -48,10 +48,6 @@
                                     <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qhr-Jy-fmM"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instagram-font-logo-white-png" translatesAutoresizingMaskIntoConstraints="NO" id="HU5-X9-5Jj">
-                                <rect key="frame" x="93" y="142" width="188" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPY-ag-5G7">
                                 <rect key="frame" x="194" y="339" width="55" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -62,6 +58,11 @@
                                     <action selector="signUpTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xft-w4-8SQ"/>
                                 </connections>
                             </button>
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1200px-Instagram_logo.svg" translatesAutoresizingMaskIntoConstraints="NO" id="HU5-X9-5Jj">
+                                <rect key="frame" x="93" y="155" width="188" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -126,8 +127,9 @@
                                                     <state key="normal" image="icons8-heart-outline-50">
                                                         <color key="titleColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <state key="selected" image="icons8-heart-48 (1)"/>
                                                     <connections>
-                                                        <action selector="photoButtonTapped:" destination="3Lk-lT-HwO" eventType="touchUpInside" id="kPi-rP-KvE"/>
+                                                        <action selector="likeButtonTapped:" destination="3Lk-lT-HwO" eventType="touchUpInside" id="8sD-h0-DHa"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDA-8K-Rgc">
@@ -195,6 +197,7 @@
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="Rgg-ad-4W2" id="xjk-pM-gId"/>
+                                            <outlet property="likesButton" destination="eea-Fs-71k" id="nV4-yB-GPT"/>
                                             <outlet property="likesLabel" destination="mDA-8K-Rgc" id="WuN-nV-YJi"/>
                                             <outlet property="photo" destination="zER-JA-36Y" id="ZqK-9c-dgC"/>
                                             <outlet property="profilePic" destination="IQa-34-Ixn" id="c4E-V1-IEJ"/>
@@ -254,7 +257,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja7-Oy-ulF">
                                 <rect key="frame" x="60" y="82" width="87" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -293,13 +296,13 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPe-hi-qZ9">
                                 <rect key="frame" x="16" y="571" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s21-Eh-sRU">
                                 <rect key="frame" x="14" y="615" width="86" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -607,9 +610,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="captionEdited:" destination="YGc-Lj-Szp" eventType="editingDidEnd" id="rBR-cN-SmL"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -735,13 +735,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1200px-Instagram_logo.svg" width="1200" height="429"/>
         <image name="feed_tab" width="25" height="25"/>
+        <image name="icons8-heart-48 (1)" width="48" height="48"/>
         <image name="icons8-heart-outline-50" width="49" height="43"/>
         <image name="icons8-speech-bubble-50" width="50" height="50"/>
         <image name="image_placeholder" width="375" height="375"/>
-        <image name="insta_background-1" width="225" height="225"/>
         <image name="insta_camera_btn" width="25" height="25"/>
-        <image name="instagram-font-logo-white-png" width="978" height="373"/>
+        <image name="instagrambackground" width="2560" height="1600"/>
         <image name="profile_tab" width="25" height="25"/>
     </resources>
 </document>

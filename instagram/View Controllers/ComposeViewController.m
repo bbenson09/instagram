@@ -62,8 +62,6 @@
         [ProgressHUD dismiss];
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -22,7 +22,7 @@
 
 @implementation MainFeedViewController
 
-- (void)viewDidLoad {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -79,7 +79,8 @@
     
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         
-        // MANUALLY ADD SEGUE TO LOGIN PAGE
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 

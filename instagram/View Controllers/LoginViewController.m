@@ -90,7 +90,8 @@
     newUser.numberFollowing = @0;
     newUser.numberFollowers = @0;
     newUser.numberPosts = @0;
-    newUser.profilePic = nil;
+    newUser.userCaption = @"";
+    // newUser.profilePic = nil;
     [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         NSLog(@"Updated following, followers, post numbers");
     }];

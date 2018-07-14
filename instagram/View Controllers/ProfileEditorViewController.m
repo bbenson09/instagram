@@ -16,7 +16,6 @@
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 @property (nonatomic, assign) BOOL isPhone;
 @property (weak, nonatomic) IBOutlet UITextField *captionEditor;
-@property (assign, nonatomic) BOOL isEdited;
 @property (strong, nonatomic) PFUser *currentUser;
 
 
@@ -28,7 +27,7 @@
     [super viewDidLoad];
     
     self.currentUser = [PFUser currentUser];
-    self.isEdited = NO;
+    
     // Do any additional setup after loading the view.
     
     PFFile *profilePicFile = self.currentUser.profilePic;
@@ -38,25 +37,23 @@
             return NSLog(@"%@", error);
         }
         
-        // Do something with the image
+        CALayer *imageLayer = self.profilePic.layer;
+        [imageLayer setCornerRadius:5];
+        [imageLayer setBorderWidth:1];
+        [imageLayer setMasksToBounds:YES];
+        [self.profilePic.layer setCornerRadius:self.profilePic.frame.size.width/2];
+        [self.profilePic.layer setMasksToBounds:YES];
         self.profilePic.image = [UIImage imageWithData:data];
     }];
 }
 
-- (IBAction)captionEdited:(id)sender {
-    
-    self.isEdited = YES;
-    
-}
-
 - (IBAction)doneClicked:(id)sender {
     
-    if (self.isEdited) {
+    if (![self.captionEditor.text isEqualToString:@""] ) {
         
-        [PFUser postCaption:self.captionEditor.text :self.currentUser withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            
-            NSLog(@"New caption posted");
-        }];
+        self.currentUser.userCaption = self.captionEditor.text;
+        [self.currentUser saveInBackground];
+        NSLog(@"Caption edited");
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -66,6 +63,8 @@
     self.imagePickerVC = [UIImagePickerController new];
     self.imagePickerVC.delegate = self;
     self.imagePickerVC.allowsEditing = YES;
+    
+    
     
     self.isPhone = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     
@@ -104,6 +103,12 @@
             return NSLog(@"%@", error);
         }
         
+        CALayer *imageLayer = self.profilePic.layer;
+        [imageLayer setCornerRadius:5];
+        [imageLayer setBorderWidth:1];
+        [imageLayer setMasksToBounds:YES];
+        [self.profilePic.layer setCornerRadius:self.profilePic.frame.size.width/2];
+        [self.profilePic.layer setMasksToBounds:YES];
         self.profilePic.image = [UIImage imageWithData:data];
     }];
     [self dismissViewControllerAnimated:YES completion:nil];

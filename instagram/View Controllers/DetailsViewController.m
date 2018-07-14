@@ -45,6 +45,12 @@
         if (!data) {
             return NSLog(@"%@", error);
         }
+        CALayer *imageLayer = self.profilePic.layer;
+        [imageLayer setCornerRadius:5];
+        [imageLayer setBorderWidth:1];
+        [imageLayer setMasksToBounds:YES];
+        [self.profilePic.layer setCornerRadius:self.profilePic.frame.size.width/2];
+        [self.profilePic.layer setMasksToBounds:YES];
         self.profilePic.image = [UIImage imageWithData:data];
     }];
 }

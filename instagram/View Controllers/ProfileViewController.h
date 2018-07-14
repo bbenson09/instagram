@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProfileEditorViewController.h"
 
-@interface ProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, ProfileEditorDelegate>
+@interface ProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 
 
